@@ -2,32 +2,36 @@
 $numero = [4, 2, 5, 1, 10, 100, 50, 3, 9, 12];
 $resto = 0;
 
-$resto = $numero %2;
-
-if ($resto == 0) {
-echo "O numero {$numero} é par. <br><br> ";
-}
-else {
-echo "O numero {$numero} é impar. <br><br>";
-}
 
 
 
-switch ($resto){
-    case 0: echo "O numero {$numero} é par. <br>";
-        break;
-    default: echo "O numero {$numero} é impar. <br>";
-        break;
+function LacoIf($numero) {
+    if ($resto == 0) {
+    echo "O numero {$numero} é par. <br><br> ";
+    }
+    else {
+    echo "O numero {$numero} é impar. <br><br>";
+    }
 }
 
+function LacoSwitch($numero) {
+    switch ($resto){
+        case 0: echo "O numero {$numero} é par. <br>";
+            break;
+        default: echo "O numero {$numero} é impar. <br>";
+            break;
+    }
+}
 
-$array = [
-    0 => "é par <br><br>",
-    1 => "é impar<br><br>",
-];
 
-echo $array[3] ?? "é impar<br><br>"; //retorna como padrao a mensagem, pois entende que nao tem 
+function LacoArray($numero) {
+    $array = [
+        0 => "é par <br><br>",
+        1 => "é impar<br><br>",
+    ];
 
+    echo $array[3] ?? "é impar<br><br>"; //retorna como padrao a mensagem, pois entende que nao tem 
+}
 
 
 
@@ -42,12 +46,13 @@ function lacoWhile ($numero) {
 
         if ($resto == 0) {
             $contPares++; // a array ira entrar em looping quando achar um impar
+        }
     }
     $contador++; //faz a array continuar quando o contpares entrar em looping
 }
 
-echo "contador: {$contador} <br><br> contPares: {$contPares}<br><br>";
-}
+echo "contador0: {$contador} <br><br> contPares0: {$contPares}<br><br>";
+
 
 function lacoDoWhile ($numero) {
     $contPares = 0;
@@ -74,8 +79,9 @@ function lacoFOR($numero) {
 
         if ($resto == 0) {
             $contPares++;
+        }
     }
-    echo "contador: {$contador} <br> contPare: {$contPares}<br><br>";
+    echo "contador: {$contador} <br><br> contPare: {$contPares}<br><br>";
 }
 
 
@@ -100,3 +106,6 @@ $soma1 = $soma + 29;
 
 echo "<br><br>A soma dos numeros {$valor1} + {$valor2} é: {$soma} ";
 echo "<br>O resultado {$soma} + 29 é: {$soma1}";
+
+
+?>
