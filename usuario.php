@@ -39,49 +39,48 @@ function LacoArray($numero) {
 
 function lacoWhile ($numero) {
     $contPares = 0;
-    $contador = 0;
+    $i = 0;
 
     while ($contPares < 5) {
-        $resto = $numero[$contador] % 2;
+        $resto = $numero[$i] % 2;
 
         if ($resto == 0) {
             $contPares++; // a array ira entrar em looping quando achar um impar
         }
     }
-    $contador++; //faz a array continuar quando o contpares entrar em looping
+    $i++; //faz a array continuar quando o contpares entrar em looping
+
+    echo "contador0: {$i} <br><br> contPares0: {$contPares}<br><br>";
 }
-
-echo "contador0: {$contador} <br><br> contPares0: {$contPares}<br><br>";
-
 
 function lacoDoWhile ($numero) {
     $contPares = 0;
-    $contador = 0;
+    $i = 0;
 
     do {
-        $resto = $numero[$contador] % 2;
+        $resto = $numero[$i] % 2;
 
         if ($resto == 0) {
             $contPares++; 
         }
-        $contador++;
+        $i++;
 
     } while ($contPares < 5);
 
-    echo "contador1: {$contador} <br><br> contPares1: {$contPares}<br><br>";
+    echo "contador1: {$i} <br><br> contPares1: {$contPares}<br><br>";
 }
 
 function lacoFOR($numero) {
     $contPares = 0;
 
-    for ($contador = 0; $contPares < 5; $contador++) {
-        $resto = $numero[$contador] % 2;
+    for ($i = 0; $contPares < 5; $i++) {
+        $resto = $numero[$i] % 2;
 
         if ($resto == 0) {
             $contPares++;
         }
     }
-    echo "contador: {$contador} <br><br> contPare: {$contPares}<br><br>";
+    echo "contador: {$i} <br><br> contPare: {$contPares}<br><br>";
 }
 
 
@@ -108,4 +107,26 @@ echo "<br><br>A soma dos numeros {$valor1} + {$valor2} é: {$soma} ";
 echo "<br>O resultado {$soma} + 29 é: {$soma1}";
 
 
-?>
+
+function SepararParImpar ($numero) {
+    $contPares = 0;
+    $contImpares = 0;
+    $pares = [];
+    $impares = [];
+    $tamanhocontador = count($numero);
+
+    for ($i = 0; $i < $tamanhocontador; $i++) {
+        $resto = $numero[$i] % 2;
+
+        if ($resto == 0) {
+            $pares = $numero[$contPares];
+            $contPares++;
+        } else {
+            $impares = $numero[$contImpares];
+            $contImpares++;
+        }
+    }
+    
+    echo "Pares: {$contPares}<br><br>";
+    echo "Impares: {$contImpares}<br><br>";
+}
