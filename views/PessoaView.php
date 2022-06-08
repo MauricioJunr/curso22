@@ -206,25 +206,36 @@
                                 <button class="btnExcluir" value="1">Excluir</button>
                             </td>
                         </tr>
+
                         <tr>
                         <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td><button class="btnEditar">Editar</button><button class="btnExcluir">Excluir</button></td>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        <td>
+                            <button id="btnEditar" class="btnEditar" value="2">Editar</button>
+                            <button class="btnExcluir" value="2">Excluir</button>
+                        </td>
                         </tr>
+
                         <tr>
                         <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                        <td><button class="btnEditar">Editar</button><button class="btnExcluir">Excluir</button></td>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                            <td>
+                                <button class="btnEditar" value="3">Editar</button>
+                                <button class="btnExcluir" value="3">Excluir</button>
+                            </td>
                         </tr>
+
                         <tr>
                         <th scope="row">4</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                        <td><button class="btnEditar">Editar</button><button class="btnExcluir">Excluir</button></td>
-                        
+                            <td colspan="2">Aviaozinhod</td>
+                            <td>@twitter</td>
+                            <td>
+                                <button class="btnEditar" value="4">Editar</button>
+                                <button class="btnExcluir" value="4">Excluir</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

@@ -26,18 +26,45 @@
 
 //$pessoa = new Pessoa();
 //$pessoa->create($pessoa_juridica);
+$pessoa = [];
+
+$idPessoa = $_REQUEST["id"] ?? 0;
 
 
-$dadosPessoa = [
-    "id" => 10,
-    "nome" => "Odair",
-    "email" => "odair@curso.com",
-    "phone" => "54 912345678",
-    "gender" => "M",
-    "type" => "CPF",
-    "cep" => "95720123"
-];
+$dadosPessoa = 
+            [
+                [
+                    "id" => 10,
+                    "nome" => "Aviaozinho",
+                    "email" => "aviaozinh@curso.com",
+                    "phone" => "54 912345678",
+                    "gender" => "M",
+                    "type" => "CPF",
+                    "cep" => "95720123"
+                ],
+                [
+                    "id" => 5,
+                    "nome" => "Barquinho",
+                    "email" => "barquinho@curso.com",
+                    "phone" => "54 912345678",
+                    "gender" => "M",
+                    "type" => "CPF",
+                    "cep" => "95720123"
+                ]
+            ];
+
+            $tamanhoarray = count($dadosPessoa);
+
+            for ($i = 0; $i < $tamanhoarray; $i++) {
+                $id = $dadosPessoa[$i]["id"] ?? 0;
+        
+                if ($id == $idPessoa) {
+                    $pessoa[] = $dadosPessoa[$i];
+                    break;
+                }
+            }
+
 
 header('Content-Type: application/json; charset=utf-8');
-echo json_encode($dadosPessoa);
+echo json_encode($pessoa);
 exit();
