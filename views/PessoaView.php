@@ -78,7 +78,7 @@
                 <div class="row mb-3">
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Phone:</label>
                         <div class="col-md-2 col-sm-12">
-                            <input id="Phone" class="form-control" type="text">
+                            <input class="form-control" type="text">
                         </div>
                 </div>
 
@@ -87,7 +87,7 @@
                 <div class="row mb-3">
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">CEP:</label>
                         <div class="col-md-2 col-sm-12">
-                            <input id="CEP" class="form-control" type="text">
+                            <input class="form-control" type="text">
                         </div>
                 </div>
 
@@ -96,7 +96,7 @@
                 <div class="row mb-3">
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Social Web:</label>
                     <div class="col-md-3 col-sm-12">
-                        <input id="SocialWeb" class="form-control" type="url">
+                        <input class="form-control" type="url">
                     </div>
                 </div>
 
@@ -105,7 +105,7 @@
                 <div class="row mb-3">
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Born/Foundation:</label>
                         <div class="col-md-2 col-sm-12">
-                            <input id="BornFoundation" class="form-control" type="date">
+                            <input class="form-control" type="date">
                         </div>
                 </div>
 
@@ -250,17 +250,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                            <td>Mauricio</td>
-                            <td>CPF</td>
-                            <td>mauricio_junr@hotmail.com</td>
-                            <td>(54)999052328</td>
-                            <td>
-                                <button class="btnEditar" value="5">Editar</button>
-                                <button class="btnExcluir" value="5">Excluir</button>
-                            </td>
-                        </tr>
+                    <?php
+                        foreach($dadosPessoa as $pessoa) {
+                        $html = (
+                        '<tr>
+                            <th scope="row">' . $pessoa["id"]. '</th>
+                                <td>'. $pessoa["name"] .'</td>
+                                <td>' . $pessoa["email"]. '</td>
+                                <td>' . $pessoa["phone"]. '</td>
+                                <td>
+                                    <button class="btnEditar btn btn-primary" value="' . $pessoa["id"]. '">Edit</button>"
+                                    <button class="btnExcluir btn btn-primary" value="' . $pessoa["id"].'">Delete</button>"
+                                </td>
+                        </tr>'
+                        );
+                        echo $html;
+                    };
+                        ?>
                     </tbody>
                 </table>
             </div>
