@@ -26,7 +26,6 @@
 
 //$pessoa = new Pessoa();
 //$pessoa->create($pessoa_juridica);
-$pessoa = [];
 
 $idPessoa = $_REQUEST["id"] ?? 0;
 
@@ -52,16 +51,8 @@ $dadosPessoa =
                     "cep" => "95720123"
                 ]
             ];
-
-            foreach($dadosPessoa as $dado){
-                if($dado['id'] == $idPessoa){
-                    $pessoa = $dado;
-                    break;
-                }
-        
-            }
            
 
 header('Content-Type: application/json; charset=utf-8');
-echo json_encode($pessoa);
+echo json_encode($dadosPessoa);
 exit();

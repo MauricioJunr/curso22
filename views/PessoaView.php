@@ -4,49 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./js/pessoa.js"></script>
+    <title>Cadastro Pessoa</title>
 </head>
     <body>
-        
-    <div class="container">
-
-        <div class="col-md-10">
-
-                <!-- Button trigger modal -->
-
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Cadastrar</button>
+        <div class="container-lg">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Cadastrar
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Cadastrar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
                 
-                <!-- Modal -->
-
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Cadastar</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    <div class="modal-body">
-                        <form class="col-md-12">
-                            
-                <!-- $id  -->
-                
-                <div class="row mb-3">
+            <form class="col-md-12">
+                <div class="row mb-3"> <!-- $id  -->
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">ID</label>
                         <div class="col-md-2 col-sm-12">
-                            <input id="idBanco" type="text" class="form-control">
+                            <input id="idPessoa" hide type="text" readonly disable="true" class="form-control">
                         </div>
                 </div>
-
-                <!-- $status -->
-
-                <div class="row mb-3">
+                <div class="row mb-3"><!-- $status -->
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Status:</label>
-                        <div class="col-md-3 col-sm-12">
+                        <div class="col-md-2 col-sm-12">
                             <select class="form-select">
                                 <option selected>Choose...</option>
                                 <option value="1">Active</option>
@@ -54,65 +43,45 @@
                             </select>
                         </div>
                 </div>
-
-                <!-- $name  -->
-
-                <div class="row mb-3"> 
+                <div class="row mb-3"> <!-- $name  -->
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Name:</label>
                         <div class="col-md-3 col-sm-12">
-                            <input id="idName" class="form-control" type="text">
+                            <input id="nomePessoa" class="form-control" type="text">
                         </div>
                 </div>
-
-                <!-- $mail -->
             
-                <div class="row mb-3">
+                <div class="row mb-3"><!-- $mail -->
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">E-mail:</label>
                         <div class="col-md-3 col-sm-12">
-                            <input id="E-mail" class="form-control" type="email">
+                            <input class="form-control" type="email">
                         </div>
                 </div>
-
-                <!-- $phone -->
-
-                <div class="row mb-3">
+                <div class="row mb-3"><!-- $phone -->
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Phone:</label>
                         <div class="col-md-2 col-sm-12">
                             <input class="form-control" type="text">
                         </div>
                 </div>
-
-                <!-- $CEP -->
-
-                <div class="row mb-3">
+                <div class="row mb-3"><!-- $CEP -->
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">CEP:</label>
                         <div class="col-md-2 col-sm-12">
                             <input class="form-control" type="text">
                         </div>
                 </div>
-
-                <!-- $socialweb -->
-
-                <div class="row mb-3">
+                <div class="row mb-3"><!-- $socialweb -->
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Social Web:</label>
                     <div class="col-md-3 col-sm-12">
                         <input class="form-control" type="url">
                     </div>
                 </div>
-
-                <!-- $foundation / $born  -->
-
-                <div class="row mb-3">
+                <div class="row mb-3"><!-- $foundation / $born  -->
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Born/Foundation:</label>
                         <div class="col-md-2 col-sm-12">
                             <input class="form-control" type="date">
                         </div>
                 </div>
-
-                <!-- $CPF / $CNPJ  -->
-
                 <div class="row mb-0">
-                    <fieldset class="row mb-3"> 
+                    <fieldset class="row mb-3"> <!-- $CPF / $CNPJ  -->
                         <legend align="center" class="col-form-label col-md-2 col-sm-12 pt-0">Type</legend>
                             <div class="col-md-10 col-sm-12">
                                 <div class="form-check">
@@ -128,12 +97,8 @@
                                 </div>
                             </div>
                     </fieldset>
-
                 </div>
-
-                <!-- $marital_status -->
-
-                <div class="row mb-0">
+                <div class="row mb-0"><!-- $marital_status -->
                     <fieldset class="row mb-3"> 
                         <legend align="center" class="col-form-label col-md-2 col-sm-12 pt-0">Marietal Status:</legend>
                             <div class="col-md-10 col-sm-12">
@@ -152,10 +117,7 @@
                             </div>
                     </fieldset>
                 </div>
-
-                <!-- $gender -->
-
-                <div class="row mb-0">
+                <div class="row mb-0"><!-- $gender -->
                     <fieldset class="row mb-3"> 
                         <legend align="center" class="col-form-label col-md-2 col-sm-12 pt-0">Gender:</legend>
                             <div class="col-md-10 col-sm-12">
@@ -174,46 +136,32 @@
                             </div>
                     </fieldset>
                 </div>
-
-                <!-- $RG -->
-
-                <div class="row mb-3">
+                <div class="row mb-3"><!-- $RG -->
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">RG:</label>
                         <div class="col-md-2 col-sm-12">
                             <input class="form-control" type="text">
                         </div>
                 </div>
-
-                <!-- $PIS -->
-
-                <div class="row mb-3">
+                <div class="row mb-3"><!-- $PIS -->
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">PIS:</label>
                         <div class="col-md-2 col-sm-12">
                             <input class="form-control" type="text">
                         </div>
                 </div>
-
-                <!-- $profession -->
-
-                <div class="row mb-3">
+                <div class="row mb-3"><!-- $profession -->
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Profession:</label>
                         <div class="col-md-2 col-sm-12">
                             <input class="form-control" type="text">
                         </div>
                 </div>
-
-                <!-- $CNAE -->
-
-                <div class="row mb-3">
+                <div class="row mb-3"><!-- $CNAE -->
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">CNAE:</label>
                         <div class="col-md-2 col-sm-12">
                             <input class="form-control" type="text">
                         </div> 
                 </div>
                 
-                <!-- $schooling -->
-
-                <div class="row mb-3">
+                <div class="row mb-3"><!-- $schooling -->
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Schooling:</label>
                         <div class="col-md-2 col-sm-12">
                             <select class="form-select">
@@ -225,52 +173,19 @@
                             </select>
                         </div>
                 </div>
-                        </form>
-                    </div>
-                        
                 <!-- <button type="submit" class="btn btn-primary">Confirm</button> -->
-                        
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
-
-                    </div>
-                </div>
-                </div>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                        foreach($dadosPessoa as $pessoa) {
-                        $html = (
-                        "<tr>
-                            <th scope=row>" . $pessoa["id"] . "</th>
-                                <td>". $pessoa["name"] ."</td>
-                                <td>" . $pessoa["email"]. "</td>
-                                <td>" . $pessoa["phone"]. "</td>
-                                <td>
-                                    <button class=btnEditar btn btn-primary value=" . $pessoa["id"]. ">Edit</button>
-                                    <button class=btnExcluir btn btn-primary value=" . $pessoa["id"].">Delete</button>
-                                </td>
-                        </tr>"
-                        );
-                        echo $html;
-                    };
-                        ?>
-                    </tbody>
-                </table>
+            </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
             </div>
         </div>
-    
+        </div>
+        <table id="tabelaPessoas"  class="table table-dark table-hover">
+        </table>
+        </div>
     </body>
 </html>
