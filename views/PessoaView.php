@@ -38,7 +38,7 @@
                 <div class="row mb-3">
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">ID</label>
                         <div class="col-md-2 col-sm-12">
-                            <input type="number" class="form-control" placeholder="select">
+                            <input id="idBanco" type="text" class="form-control">
                         </div>
                 </div>
 
@@ -60,7 +60,7 @@
                 <div class="row mb-3"> 
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Name:</label>
                         <div class="col-md-3 col-sm-12">
-                            <input class="form-control" type="text">
+                            <input id="idName" class="form-control" type="text">
                         </div>
                 </div>
 
@@ -69,7 +69,7 @@
                 <div class="row mb-3">
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">E-mail:</label>
                         <div class="col-md-3 col-sm-12">
-                            <input class="form-control" type="email">
+                            <input id="E-mail" class="form-control" type="email">
                         </div>
                 </div>
 
@@ -78,7 +78,7 @@
                 <div class="row mb-3">
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Phone:</label>
                         <div class="col-md-2 col-sm-12">
-                            <input class="form-control" type="text">
+                            <input id="Phone" class="form-control" type="text">
                         </div>
                 </div>
 
@@ -87,7 +87,7 @@
                 <div class="row mb-3">
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">CEP:</label>
                         <div class="col-md-2 col-sm-12">
-                            <input class="form-control" type="text">
+                            <input id="CEP" class="form-control" type="text">
                         </div>
                 </div>
 
@@ -96,7 +96,7 @@
                 <div class="row mb-3">
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Social Web:</label>
                     <div class="col-md-3 col-sm-12">
-                        <input class="form-control" type="url">
+                        <input id="SocialWeb" class="form-control" type="url">
                     </div>
                 </div>
 
@@ -105,7 +105,7 @@
                 <div class="row mb-3">
                     <label align="center" class="col-md-2 col-sm-12 col-form-label">Born/Foundation:</label>
                         <div class="col-md-2 col-sm-12">
-                            <input class="form-control" type="date">
+                            <input id="BornFoundation" class="form-control" type="date">
                         </div>
                 </div>
 
@@ -242,52 +242,23 @@
                     <thead>
                         <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                        <th scope="col">Ações</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                         <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td>Mauricio</td>
+                            <td>CPF</td>
+                            <td>mauricio_junr@hotmail.com</td>
+                            <td>(54)999052328</td>
                             <td>
-                                <button class="btnEditar" value="1">Editar</button>
-                                <button class="btnExcluir" value="1">Excluir</button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                        <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        <td>
-                            <button id="btnEditar" class="btnEditar" value="2">Editar</button>
-                            <button class="btnExcluir" value="2">Excluir</button>
-                        </td>
-                        </tr>
-
-                        <tr>
-                        <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                            <td>
-                                <button class="btnEditar" value="3">Editar</button>
-                                <button class="btnExcluir" value="3">Excluir</button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                        <th scope="row">4</th>
-                            <td colspan="2">Aviaozinhod</td>
-                            <td>@twitter</td>
-                            <td>
-                                <button class="btnEditar" value="4">Editar</button>
-                                <button class="btnExcluir" value="4">Excluir</button>
+                                <button class="btnEditar" value="5">Editar</button>
+                                <button class="btnExcluir" value="5">Excluir</button>
                             </td>
                         </tr>
                     </tbody>

@@ -53,17 +53,14 @@ $dadosPessoa =
                 ]
             ];
 
-            $tamanhoarray = count($dadosPessoa);
-
-            for ($i = 0; $i < $tamanhoarray; $i++) {
-                $id = $dadosPessoa[$i]["id"] ?? 0;
-        
-                if ($id == $idPessoa) {
-                    $pessoa[] = $dadosPessoa[$i];
+            foreach($dadosPessoa as $dado){
+                if($dado['id'] == $idPessoa){
+                    $pessoa = $dado;
                     break;
                 }
+        
             }
-
+           
 
 header('Content-Type: application/json; charset=utf-8');
 echo json_encode($pessoa);
