@@ -253,16 +253,16 @@
                     <?php
                         foreach($dadosPessoa as $pessoa) {
                         $html = (
-                        '<tr>
-                            <th scope="row">' . $pessoa["id"]. '</th>
-                                <td>'. $pessoa["name"] .'</td>
-                                <td>' . $pessoa["email"]. '</td>
-                                <td>' . $pessoa["phone"]. '</td>
+                        "<tr>
+                            <th scope=row>" . $pessoa["id"] . "</th>
+                                <td>". $pessoa["name"] ."</td>
+                                <td>" . $pessoa["email"]. "</td>
+                                <td>" . $pessoa["phone"]. "</td>
                                 <td>
-                                    <button class="btnEditar btn btn-primary" value="' . $pessoa["id"]. '">Edit</button>"
-                                    <button class="btnExcluir btn btn-primary" value="' . $pessoa["id"].'">Delete</button>"
+                                    <button class=btnEditar btn btn-primary value=" . $pessoa["id"]. ">Edit</button>
+                                    <button class=btnExcluir btn btn-primary value=" . $pessoa["id"].">Delete</button>
                                 </td>
-                        </tr>'
+                        </tr>"
                         );
                         echo $html;
                     };
