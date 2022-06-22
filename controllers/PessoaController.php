@@ -34,7 +34,7 @@ $dadosPessoa =
             [
                 [
                     "id" => 10,
-                    "nome" => "Aviaozinho",
+                    "nome" => "Rogerio",
                     "email" => "aviaozinh@curso.com",
                     "phone" => "54 912345678",
                     "gender" => "M",
