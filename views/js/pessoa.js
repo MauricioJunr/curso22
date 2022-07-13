@@ -1,7 +1,8 @@
 $( document ).ready(function() {
     var url = "http://localhost/curso22/controllers/PessoaController.php";
-    
-    $.get(url).done(function(response) {
+    var urlListarTodas = url + "?rota=listarTodasPessoa";
+
+    $.get(urllistarTodas).done(function(response) {
         montarTabela(response);
     }).fail(function(error) {
         console.log("Deu erro: " + JSON.stringify(error));
@@ -9,7 +10,8 @@ $( document ).ready(function() {
 
     $("#tabelaPessoas").on("click", ".btnEditar", function() {
         var id = $(this).val();
-        var urlComId = url + "?id=" + id;
+        var urlComId = url + "?id=" + id + "&rota=editarpessoa";
+        // http://localhost/curso22/controllers/PessoaController.php?id=123&rota=editarpessoa
         
         $.get(urlComId).done(function(response) {
             // console.log("sou o response: " + JSON.stringify(response));
@@ -23,7 +25,15 @@ $( document ).ready(function() {
         });
     });
 
-    $("#tabelaPessoas .btnExcluir").on("click", function() {
+    $("#tabelaPessoas").on("click", ".btnExclui", function() {
+        var id = $(this).val();
+        var urlComId = url + "?id=" + id + "&rota=excluirpessoa";
+        // http://localhost/curso22/controllers/PessoaController.php?id=123&rota=excluirpessoa
+        
+        $.get(urlComId).done(function(response) {
+            
+
+        });
         console.log("sou o clicar do excluir");
     });
 

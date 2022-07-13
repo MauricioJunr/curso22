@@ -106,8 +106,28 @@ class Pessoa {
     }
 
     public function delete($id){
-            $sql = "DELETE FROM {$this->nomeTabela} WHERE id={$id}";
-            $result = $this->conexao->query($sql);
+
+        #Delete real
+            //$sql = "DELETE FROM {$this->nomeTabela} WHERE id={$id}";
+            //$result = $this->conexao->query($sql);
+
+
+        #Excluir fake ou soft delete
+
+        $sql = "UPDATE
+				{$this->nomeTabela}
+			SET
+                deleted = true
+			WHERE
+				id = {$id};";
+
+        $result = $this->conexao->query($sql);
+
+        if ($result) {
+            return $this->conexao->affected_rows; // retorna o numero de linhas atualizadas.
+        }
+
+        return 0;
     
             return $result;
 
