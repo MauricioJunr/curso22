@@ -1,6 +1,6 @@
 <?php
 
-require "../Models/Pessoa.php"; // require - importa uma vez | require_once - importa toda vez que o arquivo usuários é acessado/chamado.
+require "../models/Pessoa.php"; // require - importa uma vez | require_once - importa toda vez que o arquivo usuários é acessado/chamado.
 
 class PessoaController
 {
@@ -40,7 +40,7 @@ class PessoaController
     {
         $dados = [];
 
-        $result = $this->pessoaModel->listar();
+        $result = $this->pessoaModel->read_all();
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -52,14 +52,14 @@ class PessoaController
     }
 
     // obtém dados de 1 usuário (EDITAR).
-    public function obterDadosUsuario()
+    public function obterDadosPessoa()
     {
-        $idUsuario = $this->request["id"] ?? 0;
+        $idPessoa = $this->request["id"] ?? 0;
 
         $dados = [];
 
-        if (!empty($idUsuario) && is_numeric($idUsuario)) {
-            $result = $this->pessoaModel->obter($idUsuario);
+        if (!empty($idUsuario) && is_numeric($idPessoa)) {
+            $result = $this->pessoaModel->read($idPessoa);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -72,22 +72,22 @@ class PessoaController
     }
 
     // apenas mudamos o status o usuário para inativo para dizermos que ele está excluído.
-    public function excluirUsuario()
+    public function excluirPessoa()
     {
-        $idUsuario = $this->request["id"] ?? 0;
+        $idPessoa = $this->request["id"] ?? 0;
 
         $dados = [
             "error" => 500,
-            "mensagem" => "Não foi possível excluir o usuário. Contate o administrados!"
+            "mensagem" => "Não foi possível excluir Pessoa. Contate o administrados!"
         ];
 
-        if (!empty($idUsuario) && is_numeric($idUsuario)) {
-            $result = $this->pessoaModel->excluir($idUsuario);
+        if (!empty($idPessoa) && is_numeric($idPessoa)) {
+            $result = $this->pessoaModel->delete($idPessoa);
 
             if ($result) {
                 $dados = [
                     "success" => 201,
-                    "mensagem" => "Usuário excluído."
+                    "mensagem" => "Pessoa excluído."
                 ];
             }
         }
@@ -95,38 +95,38 @@ class PessoaController
         $this->setResponseAPI($dados);
     }
 
-    public function salvarAtualizarUsuario()
+    public function salvarAtualizarPessoa()
     {
         $dados = [
             "error" => 500,
-            "mensagem" => "Não foi possível salvar o usuário. Contate o administrados!"
+            "mensagem" => "Não foi possível salvar Pessoa. Contate o administrados!"
         ];
 
-        $idUsuario = $this->request["id"] ?? 0;
+        $idPessoa = $this->request["id"] ?? 0;
         $nome = $this->request["nome"] ?? "";
-        $usuario = $this->request["usuario"] ?? "";
+        $Pessoa = $this->request["usuario"] ?? "";
         $email = $this->request["email"] ?? "";
         $senha = $this->request["senha"] ?? "";
         $status = $this->request["status"] ?? 0;
         $email_recuperacao = $this->request["email_recuperacao"] ?? "";
 
         // ATUALIZAR
-        if (!empty($idUsuario) && is_numeric($idUsuario)) {
-            $mensagem = "Usuário atualizado com sucesso.";
+        if (!empty($idPessoa) && is_numeric($idPessoa)) {
+            $mensagem = "Pessoa atualizado com sucesso.";
 
-            $result = $this->pessoaModel->atualizar($nome, $usuario, $email, $senha, $status, $email_recuperacao, $idUsuario);
+            $result = $this->pessoaModel->atualizar($nome, $Pessoa, $email, $senha, $status, $email_recuperacao, $idUsuario);
         } else {
             $mensagem = "Usuário cadastrado com sucesso.";
 
-            $result = $this->pessoaModel->cadastrar($nome, $usuario, $email, $senha, $status, $email_recuperacao);
-            $idUsuario = $result;
+            $result = $this->pessoaModel->cadastrar($nome, $Pessoa, $email, $senha, $status, $email_recuperacao);
+            $idPessoa = $result;
         }
 
         if ($result) {
             $dados = [
                 "success" => 201,
                 "mensagem" => $mensagem,
-                "idUsuario" => $idUsuario,
+                "idUsuario" => $idPessoa,
             ];
         }
 
@@ -135,21 +135,21 @@ class PessoaController
 }
 
 // inicializamos (instanciamos) nossa variável (objeto).
-$objPessoaController = new PessoaController($conexao);
+$objPessoaController = new PessoaController();
 
 // aqui obtemos nossa rota informada la no frontend (javascript) e conforme a rota informada redirecionamos a ação.
 switch ($objPessoaController->getRota()) {
     case "listarTodasPessoas":
-            $objPessoaController->listarUsuarios();
+            $objPessoaController->listarPessoa();
         break;
     case "editarPessoa":
-            $objPessoaController->obterDadosUsuario();
+            $objPessoaController->obterDadosPessoa();
         break;
     case "excluirPessoa":
-            $objPessoaController->excluirUsuario();
+            $objPessoaController->excluirPessoa();
         break;
     case "salvarAtualizarPessoa":
-            $objPessoaController->salvarAtualizarUsuario();
+            $objPessoaController->salvarAtualizarPessoa();
         break;
     default:
             $objPessoaController->setResponseAPI(["erro" => "404", "mensagem" => "Rota inválida ou não encontrada."]);
@@ -157,9 +157,9 @@ switch ($objPessoaController->getRota()) {
 }
 
 // após termino execução encerramos a conexão do model com o banco
-$objPessoaController->desconectarModel();
+//$objPessoaController->desconectarModel();
 
 
-header('Content-Type: application/json; charset=utf-8');
-echo json_encode($dadosPessoa);
-exit();
+//header('Content-Type: application/json; charset=utf-8');
+//echo json_encode($dadosPessoa);
+//exit();

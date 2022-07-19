@@ -1,8 +1,8 @@
 $( document ).ready(function() {
     var url = "http://localhost/curso22/controllers/PessoaController.php";
-    var urlListarTodas = url + "?rota=listarTodasPessoa";
+    var urlListarTodas = url + "?rota=listarTodasPessoas";
 
-    $.get(urllistarTodas).done(function(response) {
+    $.get(urlListarTodas).done(function(response) {
         montarTabela(response);
     }).fail(function(error) {
         console.log("Deu erro: " + JSON.stringify(error));
@@ -25,16 +25,16 @@ $( document ).ready(function() {
         });
     });
 
-    $("#tabelaPessoas").on("click", ".btnExclui", function() {
+    $("#tabelaPessoas").on("click", ".btnExcluir", function() {
         var id = $(this).val();
         var urlComId = url + "?id=" + id + "&rota=excluirpessoa";
         // http://localhost/curso22/controllers/PessoaController.php?id=123&rota=excluirpessoa
-        
+        $(this).closest("tr").remove();
         $.get(urlComId).done(function(response) {
-            
+             // ajustar a animacao
+             $(this).closest("tr").remove(); // remove o html da tabela, no caso a linha clicada
 
         });
-        console.log("sou o clicar do excluir");
     });
 
     function montarTabela (dados) {
@@ -68,9 +68,9 @@ $( document ).ready(function() {
             tbody += (
                 `<tr>
                     <td>${pessoa.id}</td>
-                    <td>${pessoa.name}</td>
+                    <td>${pessoa.nome}</td>
                     <td>${pessoa.email}</td>
-                    <td>${pessoa.phone}</td>
+                    <td>${pessoa.telefone}</td>
                     <td>${pessoa.cep}</td>
                     <td>
                         <button class="btnEditar" value="${pessoa.id}">Editar</button>

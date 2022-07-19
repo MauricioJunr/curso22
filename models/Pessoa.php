@@ -98,11 +98,11 @@ class Pessoa {
     }
 
     public function read_all(){
-            $sql = "SELECT * FROM {$this->nomeTabela}";
-            $result = $this->conexao->query($sql);
-    
-            return $result ?? [];
-    
+        $sql = "SELECT * FROM {$this->nomeTabela}";
+        $result = $this->conexao->query($sql);
+
+        return $result ?? [];
+
     }
 
     public function delete($id){
