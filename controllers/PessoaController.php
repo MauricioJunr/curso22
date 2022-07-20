@@ -114,7 +114,7 @@ class PessoaController
         if (!empty($idPessoa) && is_numeric($idPessoa)) {
             $mensagem = "Pessoa atualizado com sucesso.";
 
-            $result = $this->pessoaModel->atualizar($nome, $Pessoa, $email, $senha, $status, $email_recuperacao, $idUsuario);
+            $result = $this->pessoaModel->atualizar($nome, $Pessoa, $email, $senha, $status, $email_recuperacao, $idPessoa);
         } else {
             $mensagem = "Usuário cadastrado com sucesso.";
 
@@ -126,7 +126,7 @@ class PessoaController
             $dados = [
                 "success" => 201,
                 "mensagem" => $mensagem,
-                "idUsuario" => $idPessoa,
+                "idPessoa" => $idPessoa,
             ];
         }
 

@@ -25,6 +25,21 @@ $( document ).ready(function() {
         });
     });
 
+    $("#tabelaPessoas").on("click", ".btnSalvar", function() {
+        var id = $(this).val();
+        var urlComId = url + "?id=" + id + "&rota=salvarpessoa";
+        // http://localhost/curso22/controllers/PessoaController.php?id=123&rota=salvarpessoa
+        
+        $.get(urlComId).done(function(response) {
+
+            $("#idPessoa").val(response[0].id);
+            $("#nomePessoa").val(response[0].name);
+
+            $(this).closest("tr").save();
+
+        });
+    });
+
     $("#tabelaPessoas").on("click", ".btnExcluir", function() {
         var id = $(this).val();
         var urlComId = url + "?id=" + id + "&rota=excluirpessoa";
