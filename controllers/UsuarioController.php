@@ -1,132 +1,164 @@
 <?php
-$numero = [4, 2, 5, 1, 10, 100, 50, 3, 9, 12];
-$resto = 0;
 
+require "../models/Usuario.php"; // require - importa uma vez | require_once - importa toda vez que o arquivo usuários é acessado/chamado.
 
+class UsuarioController
+{
+    private $rota = null;
+    public $request = null;
+    protected $usuarioModel = null;
 
-
-function LacoIf($numero) {
-    if ($resto == 0) {
-    echo "O numero {$numero} é par. <br><br> ";
+    public function __construct()
+    {
+        $this->usuarioModel = new usuario();
+        $this->request = $_REQUEST;
+        $this->rota = $this->request['rota'] ?? ""; // se não tiver a palavra rota nos parâmetros da URL informamos vazio.
     }
-    else {
-    echo "O numero {$numero} é impar. <br><br>";
+
+    // retorna a rota para sabermos qual função utilizar (dadosUsuarios | obterDadosUsuario | excluirUsuario...).
+    public function getRota()
+    {
+        return $this->rota;
     }
-}
 
-function LacoSwitch($numero) {
-    switch ($resto){
-        case 0: echo "O numero {$numero} é par. <br>";
-            break;
-        default: echo "O numero {$numero} é impar. <br>";
-            break;
+    // desconectamos do banco de dados pelo model.
+    public function desconectarModel()
+    {
+        $this->usuarioModel->desconectar();
     }
-}
 
+    // setamos o retorno para o front no formato JSON (javascript - objeto)
+    public function setResponseAPI($dados)
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($dados);
+        exit();
+    }
 
-function LacoArray($numero) {
-    $array = [
-        0 => "é par <br><br>",
-        1 => "é impar<br><br>",
-    ];
+    // obtém todos os usuários
+    public function listarUsuarios()
+    {
+        $dados = [];
 
-    echo $array[3] ?? "é impar<br><br>"; //retorna como padrao a mensagem, pois entende que nao tem 
-}
+        $result = $this->usuarioModel->read_all();
 
-
-
-
-
-function lacoWhile ($numero) {
-    $contPares = 0;
-    $i = 0;
-
-    while ($contPares < 5) {
-        $resto = $numero[$i] % 2;
-
-        if ($resto == 0) {
-            $contPares++; // a array ira entrar em looping quando achar um impar
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $dados[] = $row;
+            }
         }
+
+        $this->setResponseAPI($dados);
     }
-    $i++; //faz a array continuar quando o contpares entrar em looping
 
-    echo "contador0: {$i} <br><br> contPares0: {$contPares}<br><br>";
-}
+    // obtém dados de 1 usuário (EDITAR).
+    public function obterDadosUsuario()
+    {
+        $idUsuario = $this->request["id"] ?? 0;
 
-function lacoDoWhile ($numero) {
-    $contPares = 0;
-    $i = 0;
+        $dados = [];
 
-    do {
-        $resto = $numero[$i] % 2;
+        if (!empty($idUsuario) && is_numeric($idUsuario)) {
+            $result = $this->usuarioModel->read($idUsuario);
 
-        if ($resto == 0) {
-            $contPares++; 
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $dados[] = $row;
+                }
+            }
         }
-        $i++;
 
-    } while ($contPares < 5);
-
-    echo "contador1: {$i} <br><br> contPares1: {$contPares}<br><br>";
-}
-
-function lacoFOR($numero) {
-    $contPares = 0;
-
-    for ($i = 0; $contPares < 5; $i++) {
-        $resto = $numero[$i] % 2;
-
-        if ($resto == 0) {
-            $contPares++;
-        }
+        $this->setResponseAPI($dados);
     }
-    echo "contador: {$i} <br><br> contPare: {$contPares}<br><br>";
-}
 
+    // apenas mudamos o status o usuário para inativo para dizermos que ele está excluído.
+    public function excluirUsuario()
+    {
+        $idUsuario = $this->request["id"] ?? 0;
 
-echo "Data hora inicio: " . date("d/m/Y H:i:s") . "<br><br>";
+        $dados = [
+            "error" => 500,
+            "mensagem" => "Não foi possível excluir Usuario. Contate o administrados!"
+        ];
 
-lacoWhile($numero);
-lacoDoWhile($numero);
-lacoFOR($numero);
+        if (!empty($idUsuario) && is_numeric($idUsuario)) {
+            $result = $this->usuarioModel->delete($idUsuario);
 
-echo "Data hora fim" . date("d/m/Y H:i:s");
+            if ($result) {
+                $dados = [
+                    "success" => 201,
+                    "mensagem" => "Usuario excluído."
+                ];
+            }
+        }
 
+        $this->setResponseAPI($dados);
+    }
 
+    public function salvarAtualizarUsuario()
+    {
+        $dados = [
+            "error" => 500,
+            "mensagem" => "Não foi possível salvar Pessoa. Contate o administrados!"
+        ];
 
-$soma = 0;
-$valor1=10;
-$valor2=20;
+        $idUsuario = $this->request["id"] ?? 0;
+        $nome = $this->request["nome"] ?? "";
+        $usuario = $this->request["usuario"] ?? "";
+        $email = $this->request["email"] ?? "";
+        $senha = $this->request["senha"] ?? "";
+        $status = $this->request["status"] ?? 0;
 
-$soma = $valor1 + $valor2;
-$soma1 = $soma + 29;
-//para não criar uma nova variavel, a soma pode ser {$soma += 29;}
+        // ATUALIZAR
+        if (!empty($idUsuario) && is_numeric($idUsuario)) {
+            $mensagem = "Usuario atualizado com sucesso.";
 
-
-echo "<br><br>A soma dos numeros {$valor1} + {$valor2} é: {$soma} ";
-echo "<br>O resultado {$soma} + 29 é: {$soma1}";
-
-
-
-function SepararParImpar ($numero) {
-    $contPares = 0;
-    $contImpares = 0;
-    $pares = [];
-    $impares = [];
-    $tamanhocontador = count($numero);
-
-    for ($i = 0; $i < $tamanhocontador; $i++) {
-        $resto = $numero[$i] % 2;
-
-        if ($resto == 0) {
-            $pares = $numero[$contPares];
-            $contPares++;
+            $result = $this->usuarioModel->atualizar($nome, $usuario, $email, $senha, $status, $idUsuario);
         } else {
-            $impares = $numero[$contImpares];
-            $contImpares++;
+            $mensagem = "Usuário cadastrado com sucesso.";
+
+            $result = $this->usuarioModel->cadastrar($nome, $usuario, $email, $senha, $status);
+            $idUsuario = $result;
         }
+
+        if ($result) {
+            $dados = [
+                "success" => 201,
+                "mensagem" => $mensagem,
+                "idUsuario" => $idUsuario,
+            ];
+        }
+
+        $this->setResponseAPI($dados);
     }
-    
-    echo "Pares: {$contPares}<br><br>";
-    echo "Impares: {$contImpares}<br><br>";
 }
+
+// inicializamos (instanciamos) nossa variável (objeto).
+$objUsuarioController = new UsuarioController();
+
+// aqui obtemos nossa rota informada la no frontend (javascript) e conforme a rota informada redirecionamos a ação.
+switch ($objUsuarioController->getRota()) {
+    case "listarTodosUsuarios":
+            $objUsuarioController->listarUsuario();
+        break;
+    case "editarUsuario":
+            $objUsuarioController->obterDadosUsuario();
+        break;
+    case "excluirUsuario":
+            $objUsuarioController->excluirUsuario();
+        break;
+    case "salvarAtualizarUsuario":
+            $objUsuarioController->salvarAtualizarUsuario();
+        break;
+    default:
+            $objUsuarioController->setResponseAPI(["erro" => "404", "mensagem" => "Rota inválida ou não encontrada."]);
+        break;
+}
+
+// após termino execução encerramos a conexão do model com o banco
+//$objPessoaController->desconectarModel();
+
+
+//header('Content-Type: application/json; charset=utf-8');
+//echo json_encode($dadosPessoa);
+//exit();
